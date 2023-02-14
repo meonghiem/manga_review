@@ -1,0 +1,112 @@
+<p>
+  <% if @manga.image.attached? %>
+    <%= image_tag @manga.image %>
+  <% end %>
+</p>
+
+<p class="fs-3">
+<strong>Title:</strong>
+<%= link_to @manga.title, "#", class:"btn btn-outline-dark" %>
+</p>
+
+<p class="fs-3">
+<strong>Category:</strong>
+<%= link_to @manga.get_category, @manga.category, class:"btn btn-outline-dark" %>
+</p>
+
+<p class="fs-3">
+<strong>Author:</strong>
+<%= link_to @manga.get_author, @manga.author, class:"btn btn-outline-dark" %>
+</p>
+
+<p class="fs-3">
+<strong>Description:</strong>
+<% if @manga.description != "" %>
+  <%= link_to @manga.description, "#", class:"btn btn-outline-dark" %>
+<% end %>  
+</p>
+
+<p class="fs-3">
+<strong>Rate:</strong>
+<%= link_to number_with_precision(@manga.rate, :precision => 2), "#", class:"btn btn-outline-dark" %>
+</p>
+
+
+<div class="btn-group" role="group">
+    <%= link_to 'Back', mangas_path, class:"btn btn-outline-dark" %>
+  <%= link_to 'Edit', edit_manga_path(@manga), class:"btn btn-outline-primary" %>     
+  <td><%= link_to 'Delete', @manga, method: :delete, data: { confirm: 'Are you sure?'},  class: "btn btn-outline-danger" %></td>
+  
+  <% if !@is_active %>
+    <%= form_with(model: @favourites, local: true) do |form| %>
+    <%= form.hidden_field :user_id, :value => current_user.id %>
+    <%= form.hidden_field :manga_id, :value => @manga.id %>
+    <button type="submit" class="btn btn-outline-info">Add Favouries</button>
+    <% end %>
+  <% else %> 
+    <%# <button type="button" class="btn btn-info">Add Favouries</button>  %>
+    <a class="btn btn-info" data-method="delete" href="/favourites/del?user_id=<%= current_user.id%>&manga_id=<%= @manga.id %>">Remove favourite</a>
+  <% end %> 
+  
+</div>
+
+<br><br><br>
+<p class="fs-3">Review Form</p>
+ <%= form_with(model: @review, local: true) do |form| %>
+    <div class="form-group">
+     <label for="customRange1">Rate: </label>
+     <%= form.range_field :rate, id:"rate", in:1..10 %>
+     <span id="demo"></span>/10
+   </div>
+   <div class= "field col-sm-5">
+     <%= form.text_area :comment, class:"form-control" %>
+     <%= form.hidden_field :user_id, :value => current_user.id %>
+     <%= form.hidden_field :manga_id, :value => @manga.id %>
+   </div>
+   <div class="actions">
+     <%= form.submit %>
+   </div>
+ <% end %>
+
+<br><br><br>
+<% if @manga.reviews.count > 0 %>
+<p class="fs-3">Review List</p>
+<table class="table fs-6">
+  <thead class="table-dark">
+    <tr>
+      <th>#</th>
+      <th>User</th>
+      <th>Rate</th>
+      <th>Review</th>
+      <th>Time</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @manga.reviews.each_with_index do |review, i| %>
+      <tr>
+        <td><%= link_to i+1, "#", class:"btn btn-outline-primary" %></td>
+        <% if review.user.name != "" %>
+	  <td><%= link_to review.user.name, "#", class: "btn btn-outline-dark" %> </td>
+        <% else %>
+	  <td><%= link_to review.user.email, "#", class: "btn btn-outline-dark" %> </td>
+        <% end %>    
+        <td><%= link_to review.rate, "#", class:"btn btn-outline-dark" %></td>
+        <td><%= link_to review.comment, "#", class:"btn btn-outline-dark" %></td>
+        <td><%= link_to review.created_at.localtime.strftime("%d/%m/%Y %H:%M:%S"), "#", class:"btn btn-outline-dark" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+  <p class="fs-4">No review</p>
+<% end %>
+<script>
+var slider = document.getElementById("rate");
+var output = document.getElementById("demo");
+output.innerHTML = slider.value;
+
+slider.oninput = function() {
+  output.innerHTML = this.value ;
+}
+</script>

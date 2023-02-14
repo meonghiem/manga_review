@@ -1,0 +1,31 @@
+<h1>Categories</h1>
+
+<% if @categories.count > 0 %>
+<table class="table">
+  <thead class="table-dark fs-5">
+    <tr>
+      <th>Category</th>
+      <th>Detail</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= link_to category.category, category, class: "btn btn-outline-primary" %> </td>
+        <% if category.detail != "" %>
+          <td><%= link_to category.detail, "#", class: "btn btn-outline-dark text-break text-start" %> </td>
+        <% else %>
+          <td></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+  <p class="fs-4">No category</p>
+<% end %>
+
+<br>
+
+<%= link_to 'New Category', new_category_path, class:"btn btn-outline-success" %>

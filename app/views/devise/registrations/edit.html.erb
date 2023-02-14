@@ -1,0 +1,76 @@
+<h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field col-sm-5">
+    <%= f.label :email, class:"col-form-label fs-4" %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+  
+  <div class="field col-sm-5">
+    <%= f.label :current_password, class:"col-form-label fs-4" %><br />
+    <%= f.password_field :current_password, autocomplete: "current-password", class:"form-control" %>
+  </div>
+
+  <div class="field col-sm-5">
+    <%= f.label :password, class:"col-form-label fs-4" %><br />
+    <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
+    <% if @minimum_password_length %>
+      <br />
+      <em><%= @minimum_password_length %> characters minimum</em>
+    <% end %>
+  </div>
+
+  <div class="field col-sm-5">
+    <%= f.label :password_confirmation, class:"col-form-label fs-4" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
+  </div>
+  
+  <div class="field col-sm-5">
+    <%= f.label :avatar, class:"col-form-label fs-4" %>
+    <%= f.file_field :avatar, class:"form-control"%><br>
+  </div>
+  
+  <div class="field col-sm-5">
+    <%= f.label :name, class:"col-form-label fs-4" %><br />
+    <%= f.text_field :name, class:"form-control", value:@user.name %>
+  </div>
+  
+  <div class="field col-sm-5">
+    <%= f.label :gender, class:"col-form-label fs-4" %><br />
+    <%= f.collection_select :gender, ["Male", "Female", "Other"], :to_s, :to_s, class:"form-control", value:@user.gender %>
+  </div>
+  
+  <div class="field col-sm-5">
+    <%= f.label :birthday, class:"col-form-label fs-4" %><br />
+    <%= f.date_select :birthday, :order => [:day, :month, :year], :start_year=>1900, :end_year=>2021, class:"form-control", value:@user.birthday %>
+  </div>
+  
+  <div class="field col-sm-5">
+    <%= f.label :phone, class:"col-form-label fs-4" %><br />
+    <%= f.text_field :phone, class:"form-control", value:@user.phone %>
+  </div>
+  
+  <div class="field col-sm-5">
+    <%= f.label :location, class:"col-form-label fs-4" %><br />
+    <%= f.text_field :location, class:"form-control", value:@user.location %>
+  </div>
+
+  <div class="field col-sm-5">
+    <%= f.label :about, class:"col-form-label fs-4" %><br />
+    <%= f.text_area :about, class:"form-control", value:@user.about %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Update" %>
+  </div>
+<% end %>
+
+<p><%= button_to "Delete my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class:"btn btn-outline-danger" %></p>
+
+<%= link_to "Back", :back, class:"btn btn-outline-success" %>

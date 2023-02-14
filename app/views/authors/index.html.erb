@@ -1,0 +1,33 @@
+<h1>Authors</h1>
+
+<% if @authors.count > 0 %>
+<table class="table">
+  <thead class="table-dark fs-5">
+    <tr>
+      <th>Name</th>
+      <th>Birthday</th>
+      <th>Story</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @authors.each do |author| %>
+      <tr>
+        <td><%= link_to author.name, author, class: "btn btn-outline-primary" %> </td>
+        <td><%= link_to author.birthday.strftime("%d/%m/%Y"), "#", class: "btn btn-outline-dark" %> </td>
+        <% if author.story != "" %>
+          <td><%= link_to author.story, "#", class: "btn btn-outline-dark text-break text-start" %> </td>
+        <% else %>
+          <td></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+  <p class="fs-4">No author</p>
+<% end %>
+
+<br>
+
+<%= link_to 'New Author', new_author_path, class: "btn btn-outline-success" %>

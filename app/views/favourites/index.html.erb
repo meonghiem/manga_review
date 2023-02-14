@@ -1,0 +1,32 @@
+<h1>Recent favourites</h1>
+<% if @favourites.count > 0 %>
+<table class="table">
+  <thead class="table-dark fs-5">
+    <tr>
+      <th>User</th>
+      <th>Manga</th>
+      <th>Time</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @favourites.each do |favourite| %>
+      <tr>
+        <% if favourite.user.name != "" %>
+	  <td><%= link_to favourite.user.name, "#", class: "btn btn-outline-primary" %> </td>
+        <% else %>
+	  <td><%= link_to favourite.user.email, "#", class: "btn btn-outline-primary" %> </td>
+        <% end %>
+        <% if favourite.manga %>       
+          <td><%= link_to favourite.manga.title, favourite.manga, class: "btn btn-outline-dark" %> </td>
+        <% else %>
+          <td><%= link_to "Deleted", "#", class: "btn btn-outline-dark" %> </td>
+        <% end %>
+        <td><%= link_to favourite.created_at.localtime.strftime("%d/%m/%Y %H:%M:%S"), "#", class: "btn btn-outline-dark" %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+  <p class="fs-4">No favourite</p>
+<% end %>

@@ -1,0 +1,53 @@
+<p>
+  <% if @user.avatar.attached? %>
+    <%= image_tag @user.avatar %>
+  <% end %>
+</p>
+
+<p class="fs-3">
+  <strong>Email:</strong>
+  <%= link_to @user.email, "#", class:"btn btn-outline-dark" %>
+</p>
+
+<p class="fs-3">
+<strong>Name:</strong>
+<% if @user.name != "" %>
+  <%= link_to @user.name, "#", class:"btn btn-outline-dark" %>
+<% end %>
+</p>
+
+<p class="fs-3">
+<strong>Gender:</strong>
+<%= link_to @user.gender, "#", class:"btn btn-outline-dark" %>
+</p>
+
+<p class="fs-3">
+<strong>Birthday:</strong>
+<%= link_to @user.birthday.strftime("%d/%m/%Y"), "#", class:"btn btn-outline-dark" %>
+</p>
+
+<p class="fs-3">
+<strong>Phone:</strong>
+<% if @user.phone != "" %>
+  <%= link_to @user.phone, "#", class:"btn btn-outline-dark" %>
+<% end %>
+</p>
+
+<p class="fs-3">
+<strong>Location:</strong>
+<% if @user.location != "" %>
+  <%= link_to @user.location, "#", class:"btn btn-outline-dark" %>
+<% end %>
+</p>
+
+<p class="fs-3">
+<strong>About:</strong>
+<% if @user.about != "" %>
+  <%= link_to @user.about, "#", class:"btn btn-outline-dark" %>
+<% end %>
+</p>
+
+<div class="btn-group" role="group">
+  <%= link_to 'Back', root_path, class:"btn btn-outline-dark" %>
+  <%= link_to 'Edit', edit_user_registration_path, class:"btn btn-outline-primary" %>
+</div>

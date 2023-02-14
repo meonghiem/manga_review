@@ -1,0 +1,62 @@
+<p>
+  <% if @author.author_image.attached? %>
+    <%= image_tag @author.author_image %>
+  <% end %>
+</p>
+
+<p class="fs-3">
+<strong>Name:</strong>
+<%= link_to @author.name, "#", class:"btn btn-outline-dark" %>
+</p>
+
+<p class="fs-3">
+<strong>Birthday:</strong>
+<%= link_to @author.birthday.strftime("%d/%m/%Y"), "#", class:"btn btn-outline-dark" %>
+</p>
+
+<p class="fs-3">
+<strong>Story:</strong>
+<% if @author.story != "" %>
+  <%= link_to @author.story, "#", class:"btn btn-outline-dark" %>
+<% end %>
+</p>
+
+<div class="btn-group" role="group">
+    <%= link_to 'Back', authors_path, class:"btn btn-outline-dark" %>
+  <%= link_to 'Edit', edit_author_path(@author), class:"btn btn-outline-primary" %>     
+  <td><%= link_to 'Delete', @author, method: :delete, data: { confirm: 'Are you sure?'},  class: "btn btn-outline-danger" %></td>
+</div>
+
+
+<br><br><br>
+
+<p class="fs-2">
+  Manga: <%= @author.mangas.count %> 
+</p>
+<% if @author.mangas.count > 0 %>
+<table class="table fs-6">
+  <thead class="table-dark">
+    <tr>
+      <th>#</th>
+      <th>Title</th>
+      <th>Category</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @author.mangas.each_with_index do |manga, i| %>
+      <tr>
+        <td><%= link_to i+1, "#", class:"btn btn-outline-primary" %></td>
+        <td><%= link_to manga.title, manga, class:"btn btn-outline-dark" %></td>
+        <td><%= link_to manga.get_category, manga.category, class:"btn btn-outline-dark" %></td>
+        <% if manga.description != "" %>
+          <td><%= link_to manga.description, "#", class:"btn btn-outline-dark" %></td>
+        <% else %>
+          <td></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>

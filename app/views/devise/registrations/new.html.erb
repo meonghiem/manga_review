@@ -1,0 +1,66 @@
+<h2>Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field col-sm-5">
+    <%= f.label :email, class:"col-form-label fs-4" %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
+  </div>
+
+  <div class="field col-sm-5">
+    <%= f.label :password, class:"col-form-label fs-4" %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
+  </div>
+
+  <div class="field col-sm-5">
+    <%= f.label :password_confirmation, class:"col-form-label fs-4" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
+  </div>
+  
+  <div class="field col-sm-5">
+    <%= f.label :avatar, class:"col-form-label fs-4" %>
+    <%= f.file_field :avatar, class:"form-control"%><br>
+  </div>
+  
+  <div class="field col-sm-5">
+    <%= f.label :name, class:"col-form-label fs-4" %><br />
+    <%= f.text_field :name, class:"form-control" %>
+  </div>
+  
+  <div class="field col-sm-5">
+    <%= f.label :gender, class:"col-form-label fs-4" %><br />
+    <%= f.collection_select :gender, ["Male", "Female", "Other"], :to_s, :to_s, class:"form-control" %>
+  </div>
+  
+  <div class="field col-sm-5">
+    <%= f.label :birthday, class:"col-form-label fs-4" %><br />
+    <%= f.date_select :birthday, :order => [:day, :month, :year], :start_year=>1900, :end_year=>2021, class:"form-control" %>
+  </div>
+  
+  <div class="field col-sm-5">
+    <%= f.label :phone, class:"col-form-label fs-4" %><br />
+    <%= f.text_field :phone, class:"form-control" %>
+  </div>
+  
+  <div class="field col-sm-5">
+    <%= f.label :location, class:"col-form-label fs-4" %><br />
+    <%= f.text_field :location, class:"form-control" %>
+  </div>
+
+  <div class="field col-sm-5">
+    <%= f.label :about, class:"col-form-label fs-4" %><br />
+    <%= f.text_area :about, class:"form-control" %>
+  </div>
+  <br>
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+<% end %>
+
+<br>
+
+<%= render "devise/shared/links" %>

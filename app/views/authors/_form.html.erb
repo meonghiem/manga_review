@@ -1,0 +1,37 @@
+<%= form_with(model: author, local: true) do |form| %>
+  <% if author.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(author.errors.count, "error") %> prohibited this author from being saved:</h2>
+
+      <ul>
+        <% author.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field col-sm-5">
+    <%= form.label :name, class:"col-form-label fs-4"  %>
+    <%= form.text_field :name, class:"form-control" %>
+  </div>
+
+  <div class="field col-sm-5">
+    <%= form.label :birthday, class:"col-form-label fs-4"  %>
+    <%= form.date_select :birthday, :order => [:day, :month, :year], :start_year=>1900, :end_year=>2021, class:"form-control" %>
+  </div>
+
+  <div class="field col-sm-5">
+    <%= form.label :story, class:"col-form-label fs-4" %>
+    <%= form.text_area :story, class:"form-control" %>
+  </div>
+  
+  <div class="field col-sm-5">
+    <%= form.label :author_image, class:"col-form-label fs-4" %>
+    <%= form.file_field :author_image, class:"form-control" %><br>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

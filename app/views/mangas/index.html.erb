@@ -1,0 +1,40 @@
+<h1>Manga</h1>
+
+<% if @mangas.count > 0 %>
+<form class="form-inline my-2 my-lg-0" action="/search/search">
+    <input name="keyword" class="form-control mr-sm-2" type="text" placeholder="Search" arial-label="Search">
+    <button class=" btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+</form>
+<table class="table">
+  <thead class="table-dark fs-5">
+    <tr>
+      <th>Title</th>
+      <th>Category</th>
+      <th>Author</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mangas.each_with_index do |manga| %>
+      <tr>
+        <td><%= link_to manga.title, manga, class: "btn btn-outline-primary text-break" %> </td>
+        <td><%= link_to manga.get_category, manga.category, class: "btn btn-outline-dark" %> </td>
+        <td><%= link_to manga.get_author, manga.author, class: "btn btn-outline-dark " %> </td>
+        <% if manga.description != "" %>
+          <td><%= link_to manga.description, "#", class: "btn btn-outline-dark text-break text-start" %> </td>
+        <% else %>
+          <td></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% else %>
+  <p class="fs-4">No manga</p>
+<% end %>
+
+<br>
+
+<%= link_to 'New Manga', new_manga_path, class: "btn btn-outline-success" %>
