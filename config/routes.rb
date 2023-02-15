@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'sort/sort'
   get 'search/get'
   get 'search/search'
   delete 'favourites/del', to: 'favourites#del'
