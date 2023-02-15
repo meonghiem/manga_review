@@ -5,49 +5,49 @@
 </p>
 
 <p class="fs-3">
-  <strong>Email:</strong>
+  <strong>メール:</strong>
   <%= link_to @user.email, "#", class:"btn btn-outline-dark" %>
 </p>
 
 <p class="fs-3">
-<strong>Name:</strong>
+<strong>名前:</strong>
 <% if @user.name != "" %>
   <%= link_to @user.name, "#", class:"btn btn-outline-dark" %>
 <% end %>
 </p>
 
 <p class="fs-3">
-<strong>Gender:</strong>
+<strong>性別:</strong>
 <%= link_to @user.gender, "#", class:"btn btn-outline-dark" %>
 </p>
 
 <p class="fs-3">
-<strong>Birthday:</strong>
+<strong>誕生日:</strong>
 <%= link_to @user.birthday.strftime("%d/%m/%Y"), "#", class:"btn btn-outline-dark" %>
 </p>
 
 <p class="fs-3">
-<strong>Phone:</strong>
+<strong>携帯番号:</strong>
 <% if @user.phone != "" %>
   <%= link_to @user.phone, "#", class:"btn btn-outline-dark" %>
 <% end %>
 </p>
 
 <p class="fs-3">
-<strong>Location:</strong>
+<strong>アドレス:</strong>
 <% if @user.location != "" %>
   <%= link_to @user.location, "#", class:"btn btn-outline-dark" %>
 <% end %>
 </p>
 
 <p class="fs-3">
-<strong>About:</strong>
+<strong>だいたい:</strong>
 <% if @user.about != "" %>
   <%= link_to @user.about, "#", class:"btn btn-outline-dark" %>
 <% end %>
 </p>
 
 <div class="btn-group" role="group">
-  <%= link_to 'Back', root_path, class:"btn btn-outline-dark" %>
-  <%= link_to 'Edit', edit_user_registration_path, class:"btn btn-outline-primary" %>
+  <%= link_to '戻る', root_path, class:"btn btn-outline-dark" %>
+  <%= link_to '編集', edit_user_registration_path, class:"btn btn-outline-primary" %>
 </div>

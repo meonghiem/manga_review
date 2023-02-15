@@ -1,11 +1,11 @@
-<h1>Categories</h1>
+<h1>種類</h1>
 
 <% if @categories.count > 0 %>
 <table class="table">
   <thead class="table-dark fs-5">
     <tr>
-      <th>Category</th>
-      <th>Detail</th>
+      <th>種類</th>
+      <th>詳細</th>
     </tr>
   </thead>
 
@@ -23,9 +23,9 @@
   </tbody>
 </table>
 <% else %>
-  <p class="fs-4">No category</p>
+  <p class="fs-4">種類がない</p>
 <% end %>
 
 <br>
 
-<%= link_to 'New Category', new_category_path, class:"btn btn-outline-success" %>
+<%= link_to '新しい種類', new_category_path, class:"btn btn-outline-success" %>

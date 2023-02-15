@@ -1,12 +1,12 @@
-<h1>Authors</h1>
+<h1></h1>
 
 <% if @authors.count > 0 %>
 <table class="table">
   <thead class="table-dark fs-5">
     <tr>
-      <th>Name</th>
-      <th>Birthday</th>
-      <th>Story</th>
+      <th>名前</th>
+      <th>誕生日</th>
+      <th>ストーリ</th>
     </tr>
   </thead>
 
@@ -25,9 +25,9 @@
   </tbody>
 </table>
 <% else %>
-  <p class="fs-4">No author</p>
+  <p class="fs-4">著者</p>
 <% end %>
 
 <br>
 
-<%= link_to 'New Author', new_author_path, class: "btn btn-outline-success" %>
+<%= link_to '新しい著者', new_author_path, class: "btn btn-outline-success" %>
